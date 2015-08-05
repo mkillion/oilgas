@@ -88,7 +88,7 @@
 
 	function init(){
 		esri.config.defaults.io.proxyUrl = 'http://maps.kgs.ku.edu/proxy.jsp';
-		
+
 		sr = new esri.SpatialReference({ wkid:3857 });
 		stateExtent = new esri.geometry.Extent(-11383127, 4418038, -10523333, 4898940, sr);
 
@@ -102,11 +102,11 @@
 
 			dojo.connect(map, "onClick", executeIdTask);
 			dojo.connect(map, "onExtentChange", changeOvExtent);
-            
+
             // Get URL query parameters and zoom to well/field if coming from main KGS description page:
             parseURL();
 		});
-		
+
 
 		// Define layers:
 		//baseLayer = new esri.layers.ArcGISTiledMapServiceLayer("http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer");
@@ -123,7 +123,7 @@
 
 		wellsAPILabelLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://services.kgs.ku.edu/arcgis/rest/services/oilgas/oilgas_general/MapServer", { visible:false });
 		wellsAPILabelLayer.setVisibleLayers([6]);
-		
+
 		wellsYearLabelLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://services.kgs.ku.edu/arcgis/rest/services/oilgas/oilgas_general/MapServer", { visible:false });
 		wellsYearLabelLayer.setVisibleLayers([11]);
 
@@ -136,13 +136,13 @@
 		//plssLayer = new esri.layers.ArcGISTiledMapServiceLayer("http://services.kgs.ku.edu/arcgis/rest/services/PLSS/section_township_range_0/MapServer");
         plssLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://services.kgs.ku.edu/arcgis/rest/services/PLSS/section_township_range_1/MapServer");
         //plssDynLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://services.kgs.ku.edu/arcgis/rest/services/PLSS/section_township_range_dyn/MapServer", { visible:false });
-		
+
 		wells90DaysLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://services.kgs.ku.edu/arcgis/rest/services/oilgas/oilgas_general/MapServer", { visible:false });
 		wells90DaysLayer.setVisibleLayers([12]);
 
 		lepcLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://kars.ku.edu/arcgis/rest/services/Sgpchat2013/SouthernGreatPlainsCrucialHabitatAssessmentTool2LEPCCrucialHabitat/MapServer", { visible: false} );
 
-		earthquakesLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://services.kgs.ku.edu/arcgis/rest/services/CO2/seismic/MapServer", { visible:false });
+		earthquakesLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://services.kgs.ku.edu/arcgis/rest/services/CO2/seismic_1/MapServer", { visible:false });
 		earthquakesLayer.setVisibleLayers([8]);
 
 		var imageServiceParameters = new esri.layers.ImageServiceParameters();
@@ -185,7 +185,7 @@
 		});
 
 		map.setExtent(stateExtent, true);
-		
+
 		var scalebar = new esri.dijit.Scalebar({
 				map: map,
 			    scalebarUnit:'english'
@@ -193,20 +193,20 @@
 
 		setScaleDependentTOC();
 	}
-    
-    
+
+
     function parseURL() {
         var queryParams = location.search.substr(1);
         var pairs = queryParams.split("&");
         if (pairs.length > 1) {
             var extType = pairs[0].substring(11);
             var extValue = pairs[1].substring(12);
-            
+
             var findTask = new esri.tasks.FindTask("http://services.kgs.ku.edu/arcgis/rest/services/oilgas/oilgas_general/MapServer");
 			var findParams = new esri.tasks.FindParameters();
 			findParams.returnGeometry = true;
 			findParams.contains = false;
-            
+
             switch (extType) {
                 case "well":
                     findParams.layerIds = [0];
@@ -227,7 +227,7 @@
 					findParams.searchFields = ["s_r_t"];
                     break;
             }
-            
+
             lastLocType = extType;
 			lastLocValue = extValue;
             findParams.searchText = extValue;
@@ -310,7 +310,7 @@
 			dojo.byId('wwc5_txt').style.color = '##999999';
 			dojo.byId('vis_msg').innerHTML = '* Zoom in to view layer';
 		}
-		
+
 		//dojo.byId('junk').innerHTML = lod;
 	}
 
@@ -538,10 +538,10 @@
 		else
 		{
 			var ptSymbol = new esri.symbol.SimpleMarkerSymbol(esri.symbol.SimpleMarkerSymbol.STYLE_CIRCLE, 20, new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new dojo.Color([255,255,0],1), 4), new dojo.Color([255,255,0,0.5]));
-			
+
 			feature.setSymbol(ptSymbol);
 		}
-        
+
 		map.graphics.add(feature);
 
 		if (lyrId == 0) {
@@ -1016,7 +1016,7 @@
 		filterWells(filter);
 		visibleWellLyr.show();
 	}
-	
+
 	function printPDF() {
 		var printUrl = 'http://services.kgs.ku.edu/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task';
 		var printTask = new esri.tasks.PrintTask(printUrl);
@@ -1024,28 +1024,28 @@
         var template = new esri.tasks.PrintTemplate();
 		var w, h;
 		var printOutSr = new esri.SpatialReference({ wkid:26914 });
-		
+
 		/*if (dojo.byId('plss').checked) {
 			plssLayer.hide();
 			map.addLayer(plssDynLayer);
 			plssDynLayer.show();
 		}*/
-		
+
 		title = dojo.byId("pdftitle2").value;
-		
+
 		if (dojo.byId('portrait2').checked) {
 			var layout = "Letter ANSI A Portrait";
 		} else {
 			var layout = "Letter ANSI A Landscape";
 		}
-		
+
 		dijit.byId('printdialog2').hide();
 		dojo.byId('printing_div').style.display = "block";
-		
+
 		if (dojo.byId('maponly').checked) {
 			layout = 'MAP_ONLY';
 			format = 'JPG';
-			
+
 			if (dojo.byId('portrait2').checked) {
 				w = 600;
 				h = 960;
@@ -1053,16 +1053,16 @@
 				w = 960;
 				h = 600;
 			}
-			
+
 			template.exportOptions = {
   				width: w,
   				height: h,
   				dpi: 96
-			};	
+			};
 		} else {
 			format = 'PDF';
 		}
-		
+
         template.layout = layout;
 		template.format = format;
         template.preserveScale = true;
@@ -1088,22 +1088,22 @@
         var template = new esri.tasks.PrintTemplate();
 		var w, h;
 		var printOutSr = new esri.SpatialReference({ wkid:26914 }); //utm14
-		
+
 		title = dojo.byId("pdftitle2").value;
-		
+
 		if (dojo.byId('portrait2').checked) {
 			var layout = "Letter ANSI A Portrait";
 		} else {
 			var layout = "Letter ANSI A Landscape";
 		}
-		
+
 		dijit.byId('printdialog2').hide();
 		dojo.byId('printing_div').style.display = "block";
-		
+
 		if (dojo.byId('maponly').checked) {
 			layout = 'MAP_ONLY';
 			format = 'JPG';
-			
+
 			if (dojo.byId('portrait2').checked) {
 				w = 600;
 				h = 960;
@@ -1111,22 +1111,22 @@
 				w = 960;
 				h = 600;
 			}
-			
+
 			template.exportOptions = {
   				width: w,
   				height: h,
   				dpi: 96
-			};	
+			};
 		} else {
 			format = 'PDF';
 		}
-        
+
         if (lod >= 16) {
             var units = "Feet";
         } else {
             var units = "Miles";
         }
-		
+
         template.layout = layout;
 		template.format = format;
         template.preserveScale = true;
@@ -1145,12 +1145,12 @@
 
         printTask.execute(printParams, printResult, printError);
 	}*/
-	
+
 	function printResult(result){
 		dojo.byId('printing_div').style.display = "none";
 		window.open(result.url);
     }
-	
+
     function printError(result){
         console.log(result);
     }
@@ -1158,12 +1158,12 @@
     function filterQuakes(year, mag) {
         var nextYear = parseInt(year) + 1;
         var def = [];
-        
+
         if (year !== "all") {
             if (mag !== "all") {
                 def[8] = "the_date >= to_date('" + year + "-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS') and the_date < to_date('" + nextYear + "-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS') and mag >=" + mag;
             } else {
-                def[8] = "the_date >= to_date('" + year + "-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS') and the_date < to_date('" + nextYear + "-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS')";   
+                def[8] = "the_date >= to_date('" + year + "-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS') and the_date < to_date('" + nextYear + "-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS')";
             }
         } else {
             if (mag !== "all") {
@@ -1172,8 +1172,8 @@
                 def[8] = "";
             }
         }
-        
-        earthquakesLayer.setLayerDefinitions(def);   
+
+        earthquakesLayer.setLayerDefinitions(def);
     }
 
     function filterQuakesRecent() {
@@ -1181,10 +1181,10 @@
     	def[8] = "state = 'KS' and the_date = (select max(the_date) from earthquakes where state = 'KS')";
     	earthquakesLayer.setLayerDefinitions(def);
     }
-    
+
     function filterQuakesDays(days) {
         var def = [];
-        
+
         if (days !== "all") {
             def[8] = "sysdate - the_date <= " + days;
         } else {
@@ -1192,7 +1192,7 @@
         }
         earthquakesLayer.setLayerDefinitions(def);
     }
-    
+
     function clearQuakeFilter() {
         var def = [];
         def = "";
@@ -1201,17 +1201,17 @@
         mag.options[0].selected="selected";
         year.options[0].selected="selected";
     }
-    
+
     function submitComments(l, t, c, o) {
         dojo.xhrGet( {
             url: "suggestions.cfm?layers="+l+"&tools="+t+"&comments="+c+"&occ="+o
         });
-        
+
         updateCommentCount();
-        
+
         dijit.byId('suggestionBox').hide();
     }
-    
+
     function updateCommentCount() {
         dojo.xhrGet( {
             url: "commentcount.cfm",
@@ -1276,7 +1276,7 @@
                 <tr>
                     <td colspan="2"><input type="checkbox" id="earthquakes" onClick="changeMap(earthquakesLayer,this,'earthquakes','Earthquakes');">Earthquakes 2.0+&nbsp;&nbsp;&nbsp;<span style="text-decoration:underline;cursor:pointer;font-size:12px;" onclick="dijit.byId('quakefilter').show();">Filter</span>&nbsp;&nbsp;&nbsp;<img src="images/question.png" height="15" width="15" align="bottom" style="cursor:pointer" onclick="dijit.byId('quakenotes').show();" /></td>
                 </tr>
-                    
+
                 <tr>
                     <td nowrap><input type="checkbox" id="eor10" onClick="changeMap(lepcLayer,this);">LEPC Crucial Habitat&nbsp;<img src="images/question.png" height="15" width="15" style="cursor:pointer" onclick="dijit.byId('lepcnotes').show();" /></td>
                     <td>
@@ -1286,7 +1286,7 @@
                         </div>
                     </td>
                 </tr>
-                    
+
                 <tr>
                     <td><input type="checkbox" id="fields" onClick="changeMap(fieldsLayer,this);" checked>Oil & Gas Fields</td>
                     <td>
@@ -1296,7 +1296,7 @@
                         </div>
                     </td>
                 </tr>
-                
+
                 <tr>
                     <td><input type="checkbox" id="drg" onClick="changeMap(drgLayer,this);">Topographic Map</td>
                     <td>
@@ -1384,7 +1384,7 @@
 		</div>
 	</div>
 </div>
-    
+
 <!--- Suggestion Box: --->
 <!--<div id="sb" style="position:absolute;top:77px;left:75px;background-color:yellow;border:3px solid red;text-align:center;padding:2px;font:normal normal normal 12px arial">
     <b>All comments received to date: <span id="commentcount">0</span></b><br>
