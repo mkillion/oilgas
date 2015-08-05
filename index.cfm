@@ -1178,7 +1178,7 @@
 
     function filterQuakesRecent() {
     	var def = [];
-    	def[8] = "state = 'KS' and the_date = (select max(the_date) from earthquakes where state = 'KS')";
+    	def[8] = "state = 'KS' and lower(net) <> 'ismpkansas' and the_date = (select max(the_date) from earthquakes where state = 'KS' and lower(net) <> 'ismpkansas')";
     	earthquakesLayer.setLayerDefinitions(def);
     }
 
