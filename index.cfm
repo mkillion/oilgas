@@ -1161,9 +1161,9 @@
 
         if (year !== "all") {
             if (mag !== "all") {
-                def[8] = "the_date >= to_date('" + year + "-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS') and the_date < to_date('" + nextYear + "-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS') and mag >=" + mag;
+                def[8] = "the_date >= to_date('" + year + "-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS') and the_date < to_date('" + nextYear + "-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS') and net in ('us', ' ', 'US') and mag >=" + mag;
             } else {
-                def[8] = "the_date >= to_date('" + year + "-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS') and the_date < to_date('" + nextYear + "-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS')";
+                def[8] = "the_date >= to_date('" + year + "-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS') and the_date < to_date('" + nextYear + "-01-01 00:00:00','YYYY-MM-DD HH24:MI:SS') and mag >= 2 and net in ('us', ' ', 'US')";
             }
         } else {
             if (mag !== "all") {
@@ -1178,7 +1178,7 @@
 
     function filterQuakesRecent() {
     	var def = [];
-    	def[8] = "state = 'KS' and lower(net) <> 'ismpkansas' and the_date = (select max(the_date) from earthquakes where state = 'KS' and lower(net) <> 'ismpkansas')";
+    	def[8] = "state = 'KS' and mag >= 2 and net in ('us', ' ', 'US') and the_date = (select max(the_date) from earthquakes where state = 'KS' and mag >= 2 and net in ('us', ' ', 'US'))";
     	earthquakesLayer.setLayerDefinitions(def);
     }
 
@@ -1186,7 +1186,7 @@
         var def = [];
 
         if (days !== "all") {
-            def[8] = "sysdate - the_date <= " + days;
+            def[8] = "sysdate - the_date <= " + days + " and mag >= 2 and net in ('us', ' ', 'US')";
         } else {
             def[8] = "";
         }
@@ -1380,7 +1380,7 @@
 				<span id="wwc5_filter_msg" style="color:##000000;font:normal normal bold 12px Arial;padding-left:3px">WWC5</span>
 				<button class="label" onClick="filterWells('wwc5_off');" style="text-align:center;z-index:26">Show All Water Wells</button>
 			</div>
-            <!--<div id='junk'></div>-->
+            <div id='junk'></div>
 		</div>
 	</div>
 </div>
