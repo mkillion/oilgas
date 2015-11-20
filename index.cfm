@@ -109,40 +109,36 @@
 
 
 		// Define layers:
-		//baseLayer = new esri.layers.ArcGISTiledMapServiceLayer("http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer");
 		baseLayer = new esri.layers.ArcGISTiledMapServiceLayer("http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer");
 
-		fieldsLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://services.kgs.ku.edu/arcgis/rest/services/oilgas/oilgas_fields/MapServer");
-		fieldsLayer.setVisibleLayers([0]);
+		fieldsLayer = new esri.layers.ArcGISTiledMapServiceLayer("http://services.kgs.ku.edu/arcgis2/rest/services/oilgas/oilgas_fields/MapServer");
 
-		wellsNoLabelLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://services.kgs.ku.edu/arcgis/rest/services/oilgas/oilgas_general/MapServer");
+		wellsNoLabelLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://services.kgs.ku.edu/arcgis2/rest/services/oilgas/oilgas_general/MapServer");
 		wellsNoLabelLayer.setVisibleLayers([0]);
 
-		wellsLeaseWellLabelLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://services.kgs.ku.edu/arcgis/rest/services/oilgas/oilgas_general/MapServer", { visible:false });
+		wellsLeaseWellLabelLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://services.kgs.ku.edu/arcgis2/rest/services/oilgas/oilgas_general/MapServer", { visible:false });
 		wellsLeaseWellLabelLayer.setVisibleLayers([5]);
 
-		wellsAPILabelLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://services.kgs.ku.edu/arcgis/rest/services/oilgas/oilgas_general/MapServer", { visible:false });
+		wellsAPILabelLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://services.kgs.ku.edu/arcgis2/rest/services/oilgas/oilgas_general/MapServer", { visible:false });
 		wellsAPILabelLayer.setVisibleLayers([6]);
 
-		wellsYearLabelLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://services.kgs.ku.edu/arcgis/rest/services/oilgas/oilgas_general/MapServer", { visible:false });
+		wellsYearLabelLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://services.kgs.ku.edu/arcgis2/rest/services/oilgas/oilgas_general/MapServer", { visible:false });
 		wellsYearLabelLayer.setVisibleLayers([11]);
 
-		wellsFormationLabelLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://services.kgs.ku.edu/arcgis/rest/services/oilgas/oilgas_general/MapServer", { visible:false });
+		wellsFormationLabelLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://services.kgs.ku.edu/arcgis2/rest/services/oilgas/oilgas_general/MapServer", { visible:false });
 		wellsFormationLabelLayer.setVisibleLayers([7]);
 
-		wwc5Layer = new esri.layers.ArcGISDynamicMapServiceLayer("http://services.kgs.ku.edu/arcgis/rest/services/oilgas/oilgas_general/MapServer", { visible:false });
+		wwc5Layer = new esri.layers.ArcGISDynamicMapServiceLayer("http://services.kgs.ku.edu/arcgis2/rest/services/oilgas/oilgas_general/MapServer", { visible:false });
 		wwc5Layer.setVisibleLayers([8]);
 
-		//plssLayer = new esri.layers.ArcGISTiledMapServiceLayer("http://services.kgs.ku.edu/arcgis/rest/services/PLSS/section_township_range_0/MapServer");
-        plssLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://services.kgs.ku.edu/arcgis/rest/services/PLSS/section_township_range_1/MapServer");
-        //plssDynLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://services.kgs.ku.edu/arcgis/rest/services/PLSS/section_township_range_dyn/MapServer", { visible:false });
+        plssLayer = new esri.layers.ArcGISTiledMapServiceLayer("http://services.kgs.ku.edu/arcgis2/rest/services/plss/plss/MapServer");
 
-		wells90DaysLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://services.kgs.ku.edu/arcgis/rest/services/oilgas/oilgas_general/MapServer", { visible:false });
+		wells90DaysLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://services.kgs.ku.edu/arcgis2/rest/services/oilgas/oilgas_general/MapServer", { visible:false });
 		wells90DaysLayer.setVisibleLayers([12]);
 
 		lepcLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://kars.ku.edu/arcgis/rest/services/Sgpchat2013/SouthernGreatPlainsCrucialHabitatAssessmentTool2LEPCCrucialHabitat/MapServer", { visible: false} );
 
-		earthquakesLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://services.kgs.ku.edu/arcgis/rest/services/CO2/seismic_1/MapServer", { visible:false });
+		earthquakesLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://services.kgs.ku.edu/arcgis1/rest/services/co2/seismic_1/MapServer", { visible:false });
 		earthquakesLayer.setVisibleLayers([8]);
 
 		var imageServiceParameters = new esri.layers.ImageServiceParameters();
@@ -177,7 +173,7 @@
 
 		// Set up overview map and disable its navigation:
 		ovMap = new esri.Map("ovmap_div", { slider:false, nav:false, logo:false });
-		ovLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://services.kgs.ku.edu/arcgis/rest/services/WWC5/ov_counties/MapServer");
+		ovLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://services.kgs.ku.edu/arcgis2/rest/services/wwc5/ov_counties/MapServer");
 		ovMap.addLayer(ovLayer);
 
 		dojo.connect(ovMap, "onLoad", function() {
@@ -202,7 +198,7 @@
             var extType = pairs[0].substring(11);
             var extValue = pairs[1].substring(12);
 
-            var findTask = new esri.tasks.FindTask("http://services.kgs.ku.edu/arcgis/rest/services/oilgas/oilgas_general/MapServer");
+            var findTask = new esri.tasks.FindTask("http://services.kgs.ku.edu/arcgis2/rest/services/oilgas/oilgas_general/MapServer");
 			var findParams = new esri.tasks.FindParameters();
 			findParams.returnGeometry = true;
 			findParams.contains = false;
@@ -316,7 +312,7 @@
 
 
 	function executeIdTask(evt) {
-		identify = new esri.tasks.IdentifyTask("http://services.kgs.ku.edu/arcgis/rest/services/oilgas/oilgas_general/MapServer");
+		identify = new esri.tasks.IdentifyTask("http://services.kgs.ku.edu/arcgis2/rest/services/oilgas/oilgas_general/MapServer");
 		// Set task parameters:
         identifyParams = new esri.tasks.IdentifyParameters();
         identifyParams.tolerance = 3;
@@ -546,7 +542,7 @@
 
 		if (lyrId == 0) {
 			// oil or gas well.
-			var idURL = "retrieve_info.cfm?get=well&kid=" + feature.attributes.kid + "&api=" + feature.attributes.api_number;
+			var idURL = "retrieve_info.cfm?get=well&kid=" + feature.attributes.KID + "&api=" + feature.attributes.api_number;
 		}
 		else if (lyrId == 12) {
 			// 90 day well, attribute is uppercase in this layer, lower case in the main og well layer.
@@ -623,7 +619,7 @@
 
 		var outSR = new esri.SpatialReference({ wkid: 4267});
 
-		var gsvc = new esri.tasks.GeometryService("http://services.kgs.ku.edu/arcgis/rest/services/Utilities/Geometry/GeometryServer");
+		var gsvc = new esri.tasks.GeometryService("http://services.kgs.ku.edu/arcgis2/rest/services/Utilities/Geometry/GeometryServer");
 		gsvc.project([ map.extent ], outSR, function(features) {
 			//var outCoords = features[0].geometry;
 			var xMin = features[0].xmin;
@@ -743,7 +739,7 @@
 
 
 	function quickZoom(type, value, button) {
-		findTask = new esri.tasks.FindTask("http://services.kgs.ku.edu/arcgis/rest/services/oilgas/oilgas_general/MapServer");
+		findTask = new esri.tasks.FindTask("http://services.kgs.ku.edu/arcgis2/rest/services/oilgas/oilgas_general/MapServer");
 
 		findParams = new esri.tasks.FindParameters();
 		findParams.returnGeometry = true;
@@ -1018,7 +1014,7 @@
 	}
 
 	function printPDF() {
-		var printUrl = 'http://services.kgs.ku.edu/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task';
+		var printUrl = 'http://services.kgs.ku.edu/arcgis2/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task';
 		var printTask = new esri.tasks.PrintTask(printUrl);
         var printParams = new esri.tasks.PrintParameters();
         var template = new esri.tasks.PrintTemplate();
@@ -1081,70 +1077,7 @@
 
         printTask.execute(printParams, printResult, printError);
 	}
-    /*function printPDF() {
-		var printUrl = 'http://services.kgs.ku.edu/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task';
-		var printTask = new esri.tasks.PrintTask(printUrl);
-        var printParams = new esri.tasks.PrintParameters();
-        var template = new esri.tasks.PrintTemplate();
-		var w, h;
-		var printOutSr = new esri.SpatialReference({ wkid:26914 }); //utm14
 
-		title = dojo.byId("pdftitle2").value;
-
-		if (dojo.byId('portrait2').checked) {
-			var layout = "Letter ANSI A Portrait";
-		} else {
-			var layout = "Letter ANSI A Landscape";
-		}
-
-		dijit.byId('printdialog2').hide();
-		dojo.byId('printing_div').style.display = "block";
-
-		if (dojo.byId('maponly').checked) {
-			layout = 'MAP_ONLY';
-			format = 'JPG';
-
-			if (dojo.byId('portrait2').checked) {
-				w = 600;
-				h = 960;
-			} else {
-				w = 960;
-				h = 600;
-			}
-
-			template.exportOptions = {
-  				width: w,
-  				height: h,
-  				dpi: 96
-			};
-		} else {
-			format = 'PDF';
-		}
-
-        if (lod >= 16) {
-            var units = "Feet";
-        } else {
-            var units = "Miles";
-        }
-
-        template.layout = layout;
-		template.format = format;
-        template.preserveScale = true;
-		template.showAttribution = false;
-		template.layoutOptions = {
-			scalebarUnit: units,
-			titleText: title,
-			authorText: "Kansas Geological Survey",
-			copyrightText: "http://maps.kgs.ku.edu/wwc5",
-			legendLayers: []
-		};
-
-		printParams.map = map;
-		printParams.outSpatialReference = printOutSr;
-        printParams.template = template;
-
-        printTask.execute(printParams, printResult, printError);
-	}*/
 
 	function printResult(result){
 		dojo.byId('printing_div').style.display = "none";
