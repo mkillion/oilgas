@@ -586,7 +586,7 @@
 
 		map.graphics.add(feature);
 
-		var kid = feature.attributes.field_kid;
+		var kid = feature.attributes.FIELD_KID;
 
 		// Make an ajax request to retrieve field info (content is formatted in retrieve_info.cfm):
 		dojo.xhrGet( {
