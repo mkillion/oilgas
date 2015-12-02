@@ -397,31 +397,31 @@
 					case 0:
 						selectionType = "well";
 						var title = results.length + " oil or gas wells were selected:";
-						content += "<tr><td width='*'>" + results[i].feature.attributes["lease_name"] + " " + results[i].feature.attributes["well_name"] + "</td><td width='15%'>" + results[i].feature.attributes["api_number"] + "</td><td width='10%'>" + results[i].feature.attributes["status"] + "</td><td width='10%' align='center'><A style='text-decoration:underline;color:blue;cursor:pointer' onclick='showPoint(featureset[" + i + "].feature,0);'>display</A></td></tr>";
+						content += "<tr><td width='*'>" + results[i].feature.attributes["LEASE_NAME"] + " " + results[i].feature.attributes["WELL_NAME"] + "</td><td width='15%'>" + results[i].feature.attributes["API_NUMBER"] + "</td><td width='10%'>" + results[i].feature.attributes["STATUS"] + "</td><td width='10%' align='center'><A style='text-decoration:underline;color:blue;cursor:pointer' onclick='showPoint(featureset[" + i + "].feature,0);'>display</A></td></tr>";
 						break;
 					case 1:
 						selectionType = "field";
 						var title = results.length + " fields were selected:";
-						content += "<tr><td>" + results[i].feature.attributes["field_name"] + "</td><td><A style='text-decoration:underline;color:blue;cursor:pointer;' onclick='showPoly(featureset[" + i + "].feature,1);'>display</A></td></tr>";
+						content += "<tr><td>" + results[i].feature.attributes["FIELD_NAME"] + "</td><td><A style='text-decoration:underline;color:blue;cursor:pointer;' onclick='showPoly(featureset[" + i + "].feature,1);'>display</A></td></tr>";
 						break;
 					case 8:
 						selectionType = "wwc5";
 						var title = results.length + " water wells were selected:";
 
 						var status = "";
-						if (results[i].feature.attributes["type_of_action_code"] == 1) {
+						if (results[i].feature.attributes["TYPE_OF_ACTION_CODE"] == 1) {
 							status = "Constructed";
 						}
 
-						if (results[i].feature.attributes["type_of_action_code"] == 2) {
+						if (results[i].feature.attributes["TYPE_OF_ACTION_CODE"] == 2) {
 							status = "Reconstructed";
 						}
 
-						if (results[i].feature.attributes["type_of_action_code"] == 3) {
+						if (results[i].feature.attributes["TYPE_OF_ACTION_CODE"] == 3) {
 							status = "Plugged";
 						}
 
-						var useCodeAtt = results[i].feature.attributes["water_use_code"];
+						var useCodeAtt = results[i].feature.attributes["WATER_USE_CODE"];
 						switch (useCodeAtt) {
 							case '1':
 								useCode = "Domestic";
