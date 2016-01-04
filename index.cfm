@@ -146,7 +146,7 @@
 
 		drgLayer = new esri.layers.ArcGISImageServiceLayer("http://imageserver.kansasgis.org/arcgis/rest/services/Statewide/DRG/ImageServer", { visible:false, imageServiceParameters:imageServiceParameters });
 
-		naipLayer = new esri.layers.ArcGISImageServiceLayer("http://services.kansasgis.org/arcgis/rest/services/IMAGERY_STATEWIDE/2014_NAIP_1m_Color/ImageServer", { visible:false, imageServiceParameters:imageServiceParameters });
+		naipLayer = new esri.layers.ArcGISImageServiceLayer("http://services.kgs.ku.edu/arcgis7/rest/services/IMAGERY_STATEWIDE/FSA_NAIP_2014_Color/ImageServer", { visible:false, imageServiceParameters:imageServiceParameters });
 
 		doqq02Layer = new esri.layers.ArcGISImageServiceLayer("http://imageserver.kansasgis.org/arcgis/rest/services/Statewide/2002_DOQQ_1m_bw/ImageServer", { visible:false, imageServiceParameters:imageServiceParameters });
 
@@ -1526,6 +1526,7 @@
         Year:&nbsp;
         <select name="year" id="year">
             <option value="all" selected>All</option>
+            <option value="2016">2016</option>
             <option value="2015">2015</option>
             <option value="2014">2014</option>
             <option value="2013">2013</option>
