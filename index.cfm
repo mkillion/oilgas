@@ -31,13 +31,6 @@
 <script src="http://js.arcgis.com/3.13/"></script>-->
 
 <script type="text/javascript">
-	/*dojo.require("esri.map");
-	dojo.require("esri.tasks.identify");
-	dojo.require("esri.toolbars.draw");
-	dojo.require("esri.tasks.find");
-	dojo.require("esri.tasks.geometry");
-	dojo.require("esri.dijit.Scalebar");
-	dojo.require("esri.tasks.PrintTask");*/
     dojo.require("esri.map");
 	dojo.require("esri.tasks.identify");
 	dojo.require("esri.toolbars.draw");
@@ -62,6 +55,7 @@
     dojo.require("esri.geometry.Point");
     dojo.require("esri.graphic");
     dojo.require("esri.tasks.IdentifyParameters");
+    dojo.require("esri.tasks.ProjectParameters");
 
 	dojo.require("dijit.layout.ContentPane");
 	dojo.require("dijit.layout.TabContainer");
@@ -1135,6 +1129,46 @@
         year.options[0].selected="selected";
     }
 
+
+    zoomToLatLong = function(lat,lon,datum) {
+		var gsvc = new esri.tasks.GeometryService("http://services.kgs.ku.edu/arcgis2/rest/services/Utilities/Geometry/GeometryServer");
+		var params = new esri.tasks.ProjectParameters();
+		var wgs84Sr = new esri.SpatialReference( { wkid: 4326 } );
+
+		if (lon > 0) {
+			lon = 0 - lon;
+		}
+
+		if (datum === "nad27") {
+			var p = new esri.geometry.Point(lon, lat, new esri.SpatialReference( { wkid: 4267 } ) );
+			params.geometries = [p];
+			params.outSR = wgs84Sr;
+		} else {
+			// I know...
+			var p = new esri.geometry.Point(lon, lat, new esri.SpatialReference( { wkid: 4326 } ) );
+			params.geometries = [p];
+			params.outSR = wgs84Sr;
+		}
+
+		gsvc.project(params, function(features) {
+			var pt84 = new esri.geometry.Point(features[0].x, features[0].y, wgs84Sr);
+
+			var wmPt = esri.geometry.geographicToWebMercator(pt84);
+
+			var ptSymbol = new esri.symbol.SimpleMarkerSymbol();
+			ptSymbol.setStyle(esri.symbol.SimpleMarkerSymbol.STYLE_X);
+			ptSymbol.setOutline(new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new dojo.Color([255,0,0]), 3));
+			ptSymbol.size = 20;
+
+			map.graphics.clear();
+			var graphic = new esri.Graphic(wmPt,ptSymbol);
+			map.graphics.add(graphic);
+
+			map.centerAndZoom(wmPt, 17);
+		} );
+	}
+
+
     function submitComments(l, t, c, o) {
         dojo.xhrGet( {
             url: "suggestions.cfm?layers="+l+"&tools="+t+"&comments="+c+"&occ="+o
@@ -1366,6 +1400,19 @@
     </tr>
     <tr><td></td><td><button class="label" onClick="quickZoom('plss');">Go</button></td></tr>
     </table>
+
+	<div id="or"><img src="images/or.jpg" /></div>
+    <table>
+    	<tr><td class="label" align="right">Latitude: </td><td align="left"><input type="text" id="latitude" size="10" /><span class="note" style="font-weight:normal">&nbsp;(ex. 39.12345)</span></td></tr>
+        <tr><td class="label" align="right">Longitude: </td><td align="left"><input type="text" id="longitude" size="10" /><span class="note" style="font-weight:normal">&nbsp;(ex. -95.12345)</span></td></tr>
+        <tr><td class="label" align="right">Datum: </td><td align="left">
+        	<select id="datum">
+        		<option value="nad27">NAD27</option>
+        		<option value="wgs84">WGS84</option>
+        	</select>
+       	<tr><td></td><td align="left"><button class="label" onclick="zoomToLatLong(dojo.byId('latitude').value,dojo.byId('longitude').value,dojo.byId('datum').value);">Go</button></td></tr>
+    </table>
+
     <div id="or"><img src="images/or.jpg" /></div>
         <table>
         <tr><td class="label">Well API:</td><td></td><td></td><td class="note">(extension optional)</td></tr>
