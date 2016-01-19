@@ -1,7 +1,7 @@
 html, body {
     height: 100%;
     width: 100%;
-    margin: 0; 
+    margin: 0;
     padding: 0;
 }
 
@@ -17,9 +17,9 @@ body {
 	}
 
 #header {
-	background-color:#0013AA;	
+	background-color:#0013AA;
 	}
-	
+
 .info_label {
 	font:normal normal normal 11px Arial;
 	color:#CC0000;
@@ -28,27 +28,27 @@ body {
 .info_text {
 	font:normal normal normal 11px Arial;
 	}
-	
+
 .input {
 	font:normal normal normal 12px Arial;
 	padding:2px;
 	}
-	
+
 .label {
 	font:normal normal bold 12px Arial;
 	text-align:right;
 	}
-	
+
 #logo_bar {
 	margin:auto;
 	margin-top:5px;
 	text-align:center;
 	}
-	
+
 .note {
 	font:normal normal normal 10px Arial;
 	}
-	
+
 #ovmap_div {
 	background-color:#FFFFFF;
 	width:195px;
@@ -59,7 +59,7 @@ body {
 	top:150px;
 	left:15px;
 	}
-	
+
 #scalebar_div {
 	position:relative;
 	top:-60px;
@@ -67,18 +67,18 @@ body {
 	z-index:2000;
 	display:block;
 	}
-	
+
 #sidebar {
 	background-color:#FFFFFF;
 	width:255px;
 	font:normal normal normal 12px Arial;
 	overflow:hidden;
 	}
-	
+
 .soria .dijitMenuItem {	/*FilteringSelect menu*/
 	font:normal normal normal 12px Arial;
 	}
-	
+
 .tabLabel {
 	font:normal normal bold 11px arial;
 	padding:3px;
@@ -89,10 +89,12 @@ body {
 	padding:3px;
 	margin:auto;
 	}
-	
+
 .tool_link {
 	font:normal normal bold 12px Arial;
 	color:#000000;
 	text-decoration:none;
 	cursor:pointer;
 	}
+
+
