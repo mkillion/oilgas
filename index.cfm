@@ -138,7 +138,6 @@
 		var imageServiceParameters = new esri.layers.ImageServiceParameters();
         imageServiceParameters.format = "jpg";
 
-		//drgLayer = new esri.layers.ArcGISImageServiceLayer("http://imageserver.kansasgis.org/arcgis/rest/services/Statewide/DRG/ImageServer", { visible:false, imageServiceParameters:imageServiceParameters });
 		drgLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://services.kgs.ku.edu/arcgis7/rest/services/Elevation/USGS_Digital_Topo/MapServer", { visible:false });
 		drgLayer.setVisibleLayers([11]);
 
@@ -146,8 +145,11 @@
 
 		doqq02Layer = new esri.layers.ArcGISImageServiceLayer("http://services.kgs.ku.edu/arcgis7/rest/services/IMAGERY_STATEWIDE/Kansas_DOQQ_2002/ImageServer", { visible:false, imageServiceParameters:imageServiceParameters });
 
+		doqq91Layer = new esri.layers.ArcGISImageServiceLayer("http://services.kgs.ku.edu/arcgis7/rest/services/IMAGERY_STATEWIDE/Kansas_DOQQ_1991/ImageServer", { visible:false, imageServiceParameters:imageServiceParameters });
+
 		// Add layers (first layer added displays on the bottom):
 		map.addLayer(baseLayer);
+		map.addLayer(doqq91Layer);
 		map.addLayer(doqq02Layer);
 		map.addLayer(naipLayer);
 		map.addLayer(drgLayer);
@@ -1289,6 +1291,17 @@
                         </div>
                     </td>
                 </tr>
+
+                <tr>
+                    <td><input type="checkbox" id="doqq91" onClick="changeMap(doqq91Layer,this);">1991 B&W Aerials</td>
+                    <td>
+                        <div id="horizontalSlider_doqq91" dojoType="dijit.form.HorizontalSlider" value="0" minimum="0" maximum="10" discreteValues="11"
+                            intermediateChanges="true" style="width:75px"
+                            onChange="dojo.byId('horizontalSlider_doqq91').value = arguments[0];changeOpacity(doqq91Layer,dojo.byId('horizontalSlider_doqq91').value);">
+                        </div>
+                    </td>
+                </tr>
+
                 <tr>
                     <td><input type="checkbox" id="base" onClick="changeMap(baseLayer,this);" checked>Base map</td>
                     <td>
