@@ -138,7 +138,9 @@
 		var imageServiceParameters = new esri.layers.ImageServiceParameters();
         imageServiceParameters.format = "jpg";
 
-		drgLayer = new esri.layers.ArcGISImageServiceLayer("http://imageserver.kansasgis.org/arcgis/rest/services/Statewide/DRG/ImageServer", { visible:false, imageServiceParameters:imageServiceParameters });
+		//drgLayer = new esri.layers.ArcGISImageServiceLayer("http://imageserver.kansasgis.org/arcgis/rest/services/Statewide/DRG/ImageServer", { visible:false, imageServiceParameters:imageServiceParameters });
+		drgLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://services.kgs.ku.edu/arcgis7/rest/services/Elevation/USGS_Digital_Topo/MapServer", { visible:false });
+		drgLayer.setVisibleLayers([11]);
 
 		naipLayer = new esri.layers.ArcGISImageServiceLayer("http://services.kgs.ku.edu/arcgis7/rest/services/IMAGERY_STATEWIDE/FSA_NAIP_2014_Color/ImageServer", { visible:false, imageServiceParameters:imageServiceParameters });
 
