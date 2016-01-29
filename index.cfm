@@ -105,7 +105,7 @@
 		// Define layers:
 		baseLayer = new esri.layers.ArcGISTiledMapServiceLayer("http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer");
 
-		fieldsLayer = new esri.layers.ArcGISTiledMapServiceLayer("http://services.kgs.ku.edu/arcgis2/rest/services/oilgas/oilgas_fields/MapServer");
+		fieldsLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://services.kgs.ku.edu/arcgis2/rest/services/oilgas/oilgas_fields/MapServer");
 
 		wellsNoLabelLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://services.kgs.ku.edu/arcgis2/rest/services/oilgas/oilgas_general/MapServer");
 		wellsNoLabelLayer.setVisibleLayers([0]);
@@ -142,7 +142,7 @@
 
 		naipLayer = new esri.layers.ArcGISImageServiceLayer("http://services.kgs.ku.edu/arcgis7/rest/services/IMAGERY_STATEWIDE/FSA_NAIP_2014_Color/ImageServer", { visible:false, imageServiceParameters:imageServiceParameters });
 
-		doqq02Layer = new esri.layers.ArcGISImageServiceLayer("http://imageserver.kansasgis.org/arcgis/rest/services/Statewide/2002_DOQQ_1m_bw/ImageServer", { visible:false, imageServiceParameters:imageServiceParameters });
+		doqq02Layer = new esri.layers.ArcGISImageServiceLayer("http://services.kgs.ku.edu/arcgis7/rest/services/IMAGERY_STATEWIDE/Kansas_DOQQ_2002/ImageServer", { visible:false, imageServiceParameters:imageServiceParameters });
 
 		// Add layers (first layer added displays on the bottom):
 		map.addLayer(baseLayer);
@@ -733,6 +733,7 @@
 
 
 	function quickZoom(type, value, button) {
+		console.log(button);
 		findTask = new esri.tasks.FindTask("http://services.kgs.ku.edu/arcgis2/rest/services/oilgas/oilgas_general/MapServer");
 
 		findParams = new esri.tasks.FindParameters();
