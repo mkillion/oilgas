@@ -1144,7 +1144,17 @@
 			lon = 0 - lon;
 		}
 
-		var srId = (datum === "nad27") ? 4267 : 4326;
+		switch (datum) {
+			case "nad27":
+				var srId = 4267;
+				break;
+			case "nad83":
+				var srId = 4269;
+				break;
+			case "wgs84":
+				var srId = 4326;
+				break;
+		}
 
 		var p = new esri.geometry.Point(lon, lat, new esri.SpatialReference( { wkid: srId } ) );
 		params.geometries = [p];
@@ -1419,6 +1429,7 @@
         <tr><td class="label" align="right">Datum: </td><td align="left">
         	<select id="datum">
         		<option value="nad27">NAD27</option>
+        		<option value="nad83">NAD83</option>
         		<option value="wgs84">WGS84</option>
         	</select>
        	<tr><td></td><td align="left"><button class="label" onclick="zoomToLatLong(dojo.byId('latitude').value,dojo.byId('longitude').value,dojo.byId('datum').value);">Go</button></td></tr>
