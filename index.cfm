@@ -777,7 +777,7 @@
 				else {
 					var apiText = dojo.byId('api_state').value + "-" + dojo.byId('api_county').value + "-" + dojo.byId('api_number').value;
 
-					if (dojo.byId('api_extension').value != "") {
+					if (dojo.byId('api_extension').value != "" && dojo.byId('api_extension').value != "0000") {
 						apiText = apiText + "-" + dojo.byId('api_extension').value;
 					}
 
