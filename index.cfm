@@ -1390,7 +1390,7 @@
     <button onClick="dijit.byId('suggestionBox').show();" style="margin:4px;">Suggestions</button>&nbsp;&nbsp;&nbsp;<button onClick="dojo.byId('sb').style.display='none';" style="margin:4px;">Close</button><br>
     What improvements could be made in the<br>
     next version of the oil and gas mapper?<br>
-    <!---Oil and gas WELLS layer is currently offline. We hope to have the problem resolved soon.--->
+    Oil and gas WELLS layer is currently offline. We hope to have the problem resolved soon.
 </div>-->
 
 <!-- Quick zoom dialog box: -->
