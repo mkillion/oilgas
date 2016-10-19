@@ -141,7 +141,7 @@
 		drgLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://services.kgs.ku.edu/arcgis7/rest/services/Elevation/USGS_Digital_Topo/MapServer", { visible:false });
 		drgLayer.setVisibleLayers([11]);
 
-		naipLayer = new esri.layers.ArcGISImageServiceLayer("http://services.kgs.ku.edu/arcgis7/rest/services/IMAGERY_STATEWIDE/FSA_NAIP_2014_Color/ImageServer", { visible:false, imageServiceParameters:imageServiceParameters });
+		naipLayer = new esri.layers.ArcGISImageServiceLayer("http://services.kgs.ku.edu/arcgis7/rest/services/IMAGERY_STATEWIDE/FSA_NAIP_2015_Color/ImageServer", { visible:false, imageServiceParameters:imageServiceParameters });
 
 		doqq02Layer = new esri.layers.ArcGISImageServiceLayer("http://services.kgs.ku.edu/arcgis7/rest/services/IMAGERY_STATEWIDE/Kansas_DOQQ_2002/ImageServer", { visible:false, imageServiceParameters:imageServiceParameters });
 
@@ -1295,7 +1295,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><input type="checkbox" id="naip" onClick="changeMap(naipLayer,this);">2014 Aerials</td>
+                    <td><input type="checkbox" id="naip" onClick="changeMap(naipLayer,this);">2015 Aerials</td>
                     <td>
                         <div id="horizontalSlider_naip" dojoType="dijit.form.HorizontalSlider" value="0" minimum="0" maximum="10" discreteValues="11"
                             intermediateChanges="true" style="width:75px"
@@ -1711,4 +1711,3 @@ pageTracker._trackPageview();
 </body>
 </html>
 </cfoutput>
-
