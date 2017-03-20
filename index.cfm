@@ -345,7 +345,7 @@
 		}
 		else {
 			var title = results.length + " features were selected:";
-			var content = "Please zoom in further to select a well.";
+			var content = "No features found - zooming in may help.";
 			var isSelection = false;
 		}
 
