@@ -337,6 +337,8 @@
 
 
 	function addToMap(results,evt) {
+		map.infoWindow.hide();
+
 		featureset = results;
 
 		if (featureset.length > 1) {
