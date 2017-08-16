@@ -778,14 +778,29 @@
 					findParams.searchText = value;
 				}
 				else {
-					var apiText = dojo.byId('api_state').value + "-" + dojo.byId('api_county').value + "-" + dojo.byId('api_number').value;
+					// This section changed 20170816 to return wells that have extensions even if the extension is not entered.
+					var stcode = dojo.byId('api_state').value;
+					var cocode = dojo.byId('api_county').value;
+					var apicode = dojo.byId('api_number').value;
 
-					if (dojo.byId('api_extension').value != "" && dojo.byId('api_extension').value != "0000") {
-						apiText = apiText + "-" + dojo.byId('api_extension').value;
-					}
+					var qt = new esri.tasks.QueryTask("http://services.kgs.ku.edu/arcgis8/rest/services/oilgas/oilgas_general/MapServer/0");
+					var query = new esri.tasks.Query();
+        			query.returnGeometry = true;
+        			query.where = "STATE_CODE = " + stcode + " and COUNTY_CODE = " + cocode + " and API_WELL_NUMBER = " + apicode;
+        			query.outFields = ["*"];
+        			qt.execute(query, function(fset) {
+        				if (fset.features.length === 0) {
+        					dojo.byId('warning_msg').innerHTML = "This search did not return any features.<br>Please check your entries and try again.";
+							dijit.byId('warning_box').show();
+        				}
 
-					findParams.searchFields = ["api_number"];
-					findParams.searchText = apiText;
+        				var f = fset.features[0];
+
+						var point = new esri.geometry.Point([f.geometry.x,f.geometry.y],sr);
+						map.centerAndZoom(point,16);
+
+						showPoint(f, 0);
+					} );
 				}
 				break;
 
