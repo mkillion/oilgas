@@ -140,7 +140,7 @@
 
 		// drgLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://services.kgs.ku.edu/arcgis7/rest/services/Elevation/USGS_Digital_Topo/MapServer", { visible:false });
 		// drgLayer.setVisibleLayers([11]);
-		drgLayer = new esri.layers.ArcGISDynamicMapServiceLayer("https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer", { visible:false });
+		drgLayer = new esri.layers.ArcGISTiledMapServiceLayer("https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer", { visible:false });
 
 		naipLayer = new esri.layers.ArcGISImageServiceLayer("http://services.kgs.ku.edu/arcgis7/rest/services/IMAGERY_STATEWIDE/FSA_NAIP_2015_Color/ImageServer", { visible:false, imageServiceParameters:imageServiceParameters });
 
@@ -148,10 +148,13 @@
 
 		doqq91Layer = new esri.layers.ArcGISImageServiceLayer("http://services.kgs.ku.edu/arcgis7/rest/services/IMAGERY_STATEWIDE/Kansas_DOQQ_1991/ImageServer", { visible:false, imageServiceParameters:imageServiceParameters });
 
+		hroImageryLayer = new esri.layers.ArcGISImageServiceLayer("http://services.kansasgis.org/arcgis7/rest/services/IMAGERY_STATEWIDE/Kansas_HRO_2014_Color/ImageServer", {visible:false} );
+
 		// Add layers (first layer added displays on the bottom):
 		map.addLayer(baseLayer);
 		map.addLayer(doqq91Layer);
 		map.addLayer(doqq02Layer);
+		map.addLayer(hroImageryLayer);
 		map.addLayer(naipLayer);
 		map.addLayer(drgLayer);
 		map.addLayer(fieldsLayer);
@@ -1321,6 +1324,17 @@
                         </div>
                     </td>
                 </tr>
+
+                <tr>
+                    <td><input type="checkbox" id="hro" onClick="changeMap(hroImageryLayer,this);">2014 1ft Aerials</td>
+                    <td>
+                        <div id="horizontalSlider_hro" dojoType="dijit.form.HorizontalSlider" value="0" minimum="0" maximum="10" discreteValues="11"
+                            intermediateChanges="true" style="width:75px"
+                            onChange="dojo.byId('horizontalSlider_hro').value = arguments[0];changeOpacity(hroImageryLayer,dojo.byId('horizontalSlider_hro').value);">
+                        </div>
+                    </td>
+                </tr>
+
                 <tr>
                     <td><input type="checkbox" id="doqq02" onClick="changeMap(doqq02Layer,this);">2002 B&W Aerials</td>
                     <td>
@@ -1378,7 +1392,7 @@
 					<p>
                 	<li><a href="http://www.kgs.ku.edu" target="_blank">KGS Home Page</a></li>
                     <p>
-                    <li><a href="http://permanent.access.gpo.gov/websites/ergusgsgov/erg.usgs.gov/isb/pubs/booklets/symbols/index.html" target="_blank">Topographic Map Symbols</a></li>
+                    <li><a href="https://pubs.usgs.gov/gip/TopographicMapSymbols/topomapsymbols.pdf" target="_blank">Topographic Map Symbols</a></li>
                     <p>
                     <li><a href="http://maps.kgs.ku.edu/wwc5" target="_blank">KGS WWC5 Water Well Mapper</a></li>
 				</ul>
