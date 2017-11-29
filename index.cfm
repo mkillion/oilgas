@@ -140,7 +140,8 @@
 
 		// drgLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://services.kgs.ku.edu/arcgis7/rest/services/Elevation/USGS_Digital_Topo/MapServer", { visible:false });
 		// drgLayer.setVisibleLayers([11]);
-		drgLayer = new esri.layers.ArcGISTiledMapServiceLayer("https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer", { visible:false });
+		// drgLayer = new esri.layers.ArcGISTiledMapServiceLayer("https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer", { visible:false });
+		drgLayer = new esri.layers.ArcGISTiledMapServiceLayer("http://server.arcgisonline.com/ArcGIS/rest/services/USA_Topo_Maps/MapServer", { visible:false });
 
 		naipLayer = new esri.layers.ArcGISImageServiceLayer("http://services.kgs.ku.edu/arcgis7/rest/services/IMAGERY_STATEWIDE/FSA_NAIP_2015_Color/ImageServer", { visible:false, imageServiceParameters:imageServiceParameters });
 
