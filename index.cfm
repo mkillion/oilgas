@@ -130,7 +130,7 @@
 		wells90DaysLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://services.kgs.ku.edu/arcgis8/rest/services/oilgas/oilgas_general/MapServer", { visible:false });
 		wells90DaysLayer.setVisibleLayers([12]);
 
-		lepcLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://kars.ku.edu/arcgis/rest/services/Sgpchat2013/SouthernGreatPlainsCrucialHabitatAssessmentTool2LEPCCrucialHabitat/MapServer", { visible: false} );
+		lepcLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://kars.ku.edu/arcgis/rest/services/Sgpchat/SouthernGreatPlainsCrucialHabitatAssessmentToolLPCCrucialHabitat/MapServer", { visible: false} );
 
 		earthquakesLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://services.kgs.ku.edu/arcgis1/rest/services/co2/seismic_1/MapServer", { visible:false });
 		earthquakesLayer.setVisibleLayers([8]);
