@@ -125,7 +125,7 @@
 		wwc5Layer = new esri.layers.ArcGISDynamicMapServiceLayer("http://services.kgs.ku.edu/arcgis8/rest/services/oilgas/oilgas_general/MapServer", { visible:false });
 		wwc5Layer.setVisibleLayers([8]);
 
-        plssLayer = new esri.layers.ArcGISTiledMapServiceLayer("http://services.kgs.ku.edu/arcgis8/rest/services/plss/plss/MapServer");
+        plssLayer = new esri.layers.ArcGISTiledMapServiceLayer("http://services.kgs.ku.edu/arcgis8/rest/services/plss/plss_anno_labels/MapServer");
 
 		wells90DaysLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://services.kgs.ku.edu/arcgis8/rest/services/oilgas/oilgas_general/MapServer", { visible:false });
 		wells90DaysLayer.setVisibleLayers([12]);
