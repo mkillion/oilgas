@@ -17,7 +17,7 @@
 <cfquery name="qCommentCount" datasource="gis_webinfo">
     select count(*) as the_count from og_mapper_comments
 </cfquery>
-    
+
 <cfif url.get eq "well">
 	<!--- Get well info: --->
     <cfquery name="qWell_Headers" datasource="plss">
@@ -264,7 +264,7 @@
         select
             w.input_seq_number,
             c.name as county,
-            initcap(w.owner_name) as owner_name,
+            w.owner_name as owner_name,
             w.depth_of_completed_well,
             w.static_water_level,
             w.estimeted_yield,
