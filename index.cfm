@@ -1299,8 +1299,12 @@
                     <td><input type="checkbox" id="plss" onClick="changeMap(plssLayer,this);" checked><span id="plss_txt"></span></td>
                     <td></td>
                 </tr>
-                <tr>
+
+                <!---<tr>
                     <td colspan="2"><input type="checkbox" id="earthquakes" onClick="changeMap(earthquakesLayer,this,'earthquakes','Earthquakes');">Earthquakes 2.0+&nbsp;&nbsp;&nbsp;<span style="text-decoration:underline;cursor:pointer;font-size:12px;" onclick="dijit.byId('quakefilter').show();">Filter</span>&nbsp;&nbsp;&nbsp;<img src="images/question.png" height="15" width="15" align="bottom" style="cursor:pointer" onclick="dijit.byId('quakenotes').show();" /></td>
+                </tr>--->
+                <tr>
+                	<td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Earthquakes - see Links tab.</td>
                 </tr>
 
                 <tr>
@@ -1412,6 +1416,8 @@
                     <li><a href="https://pubs.usgs.gov/gip/TopographicMapSymbols/topomapsymbols.pdf" target="_blank">Topographic Map Symbols</a></li>
                     <p>
                     <li><a href="http://maps.kgs.ku.edu/wwc5" target="_blank">KGS WWC5 Water Well Mapper</a></li>
+                    <p>
+                    <li><a href="http://www.kgs.ku.edu/Geophysics/Earthquakes/index.html" target="_blank">Kansas Earthquakes</a></li>
 				</ul>
             </div>
         </div>
