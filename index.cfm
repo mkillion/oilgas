@@ -105,7 +105,7 @@
 		// Define layers:
 		baseLayer = new esri.layers.ArcGISTiledMapServiceLayer("http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer");
 
-		fieldsLayer = new esri.layers.ArcGISTiledMapServiceLayer("http://services.kgs.ku.edu/arcgis8/rest/services/oilgas/oilgas_fields/MapServer");
+		fieldsLayer = new esri.layers.ArcGISTiledMapServiceLayer("http://services.kgs.ku.edu/arcgis8/rest/services/oilgas/oilgas_fields_2/MapServer");
 
 		wellsNoLabelLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://services.kgs.ku.edu/arcgis8/rest/services/oilgas/oilgas_general/MapServer");
 		wellsNoLabelLayer.setVisibleLayers([0]);
