@@ -1271,6 +1271,7 @@
            	<span class="tool_link" onclick="dijit.byId('printdialog2').show();">Print to PDF</span>&nbsp;|&nbsp;
             <span class="tool_link" onClick="map.graphics.clear();">Clear Highlight</span>&nbsp;|&nbsp;
             <a class="tool_link" href="help.cfm" target="_blank">Help</a>
+            <span style="background-color:yellow; font:normal normal bold 16px arial; z-index:50; margin-left:20px;">New version of this mapper coming Friday p.m.</span>
        	</div>
 	</div>
 
